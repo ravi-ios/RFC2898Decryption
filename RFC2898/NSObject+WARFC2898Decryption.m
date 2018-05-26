@@ -20,14 +20,14 @@
 
 - (BOOL)verifyHashPassword:(NSString *)hashPassword withPassword:(NSString *)password ß{
     if(hashPassword.length == 0 && password.length == 0) {
+        //Allowing empty passwords from both the sides
         return  YES;
     }
-    if(hashPassword.length == 0) {
+    
+    if(hashPassword.length == 0 || password.length == 0) {
         return NO;
     }
-    if(password.length == 0) {
-        return NO;
-    }
+
     NSData *hashPasswordData= [[NSData alloc] initWithBase64EncodedString:hashPassword options:NSASCIIStringEncoding];
     unsigned char *hashPasswordByteData = (unsigned char *)[hashPasswordData bytes];
     int firstByte = hashPasswordByteData[0];
